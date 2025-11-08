@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jacqueline Ferri">
 
-<title>Home – Jacqueline Ferri - Portfolio</title>
+<title>Project 1 Part 2 – Jacqueline Ferri - Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -73,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -93,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -101,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./example_analysis.html"> 
+    <a class="nav-link" href="./example-analysis.qmd"> 
 <span class="menu-text">Example analysis</span></a>
   </li>  
 </ul>
@@ -115,27 +151,25 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Home</h1>
+<h1 class="title">Project 1 Part 2</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jacqueline Ferri </p>
+          </div>
+  </div>
     
   
     
@@ -146,27 +180,207 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="welcome" class="level1">
-<h1>Welcome</h1>
-<div class="grid gap-4 align-items-center">
-<div class="g-col-12 g-col-md-4">
-<p><img src="headshot.jpeg" alt="Your photo" style="width:100%; border-radius:10px;"></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="jacqueline-ferri" class="level2 g-col-12 g-col-md-8">
-<h2 class="anchored" data-anchor-id="jacqueline-ferri">Jacqueline Ferri</h2>
-<section id="second-year-phd-student" class="level3">
-<h3 class="anchored" data-anchor-id="second-year-phd-student">Second Year PhD Student</h3>
-<p>MMI program at Johns Hopkins Bloomberg School of Public Health</p>
-<p>I’m a student interested in how the microbiome shapes health and everyday life. I like working with data to see how tiny changes in microbial communities can make a big difference. Still figuring out where this will take me, but I’m excited to keep learning along the way.</p>
+<p>All solutions include the command (first set of lines) and the output (second set of lines)</p>
+<section id="use-wget-or-curl-to-download-the-students.csv-file-locally-from-here." class="level2">
+<h2 class="anchored" data-anchor-id="use-wget-or-curl-to-download-the-students.csv-file-locally-from-here.">Use wget or curl to download the students.csv file locally from here.</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>wget -O students.csv https://raw.githubusercontent.com/stephaniehicks/jhustatprogramming2025/refs/heads/main/projects/01-project/students.csv</p>
+</div>
+</div>
 </section>
-<section id="links" class="level3">
-<h3 class="anchored" data-anchor-id="links">Links</h3>
-<ul>
-<li><a href="https://github.com/jferri3">GitHub</a></li>
-<li><a href="https://www.linkedin.com/in/jacqueline-ferri/">LinkedIn</a></li>
-</ul>
+<section id="display-the-contents-of-the-students.csv-file-using-the-cat-command." class="level2">
+<h2 class="anchored" data-anchor-id="display-the-contents-of-the-students.csv-file-using-the-cat-command.">Display the contents of the students.csv file using the cat command.</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>cat students.csv</p>
+</div>
+</div>
 </section>
+<section id="display-only-the-first-5-lines-of-the-file-using-head-to-show-the-first-few-lines." class="level2">
+<h2 class="anchored" data-anchor-id="display-only-the-first-5-lines-of-the-file-using-head-to-show-the-first-few-lines.">Display only the first 5 lines of the file using head to show the first few lines.</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>head -n 5 students.csv</p>
+</div>
+</div>
 </section>
+<section id="display-only-the-last-3-lines-of-the-file-using-tail-to-show-the-last-few-lines." class="level2">
+<h2 class="anchored" data-anchor-id="display-only-the-last-3-lines-of-the-file-using-tail-to-show-the-last-few-lines.">Display only the last 3 lines of the file using tail to show the last few lines.</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>tail -n 3 students.csv</p>
+</div>
+</div>
+</section>
+<section id="count-the-number-of-lines-in-the-file-using-the-wc-command-to-count-the-lines." class="level2">
+<h2 class="anchored" data-anchor-id="count-the-number-of-lines-in-the-file-using-the-wc-command-to-count-the-lines.">Count the number of lines in the file using the wc command to count the lines.</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>wc -l students.csv</p>
+</div>
+</div>
+</section>
+<section id="find-all-students-who-are-taking-math-as-a-subject-using-grep-to-filter-lines-with-the-subject-math." class="level2">
+<h2 class="anchored" data-anchor-id="find-all-students-who-are-taking-math-as-a-subject-using-grep-to-filter-lines-with-the-subject-math.">Find all students who are taking “Math” as a subject using grep to filter lines with the subject “Math”.</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>grep “Math” students.csv</p>
+</div>
+</div>
+</section>
+<section id="find-all-female-students-using-grep-or-awk-to-filter-based-on-gender" class="level2">
+<h2 class="anchored" data-anchor-id="find-all-female-students-using-grep-or-awk-to-filter-based-on-gender">Find all female students using grep or awk to filter based on gender</h2>
+</section>
+<section id="sort-the-file-by-the-students-ages-in-ascending-order.-use-sort-to-order-by-the-age-column." class="level2">
+<h2 class="anchored" data-anchor-id="sort-the-file-by-the-students-ages-in-ascending-order.-use-sort-to-order-by-the-age-column.">Sort the file by the students’ ages in ascending order. Use sort to order by the “Age” column.</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>grep “,F,” students.csv</p></li>
+<li><p>sort -t, -k3,3n students.csv</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="find-the-unique-subjects-listed-in-the-file.-use-cut-sort-and-uniq-to-extract-unique-subjects." class="level2">
+<h2 class="anchored" data-anchor-id="find-the-unique-subjects-listed-in-the-file.-use-cut-sort-and-uniq-to-extract-unique-subjects.">Find the unique subjects listed in the file. Use cut, sort, and uniq to extract unique subjects.</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>cut -d, -f6 students.csv | tail -n +2 | sort | uniq</p>
+</div>
+</div>
+</section>
+<section id="calculate-the-average-grade-of-the-students.-use-awk-to-sum-the-grades-and-divide-by-the-number-of-students." class="level2">
+<h2 class="anchored" data-anchor-id="calculate-the-average-grade-of-the-students.-use-awk-to-sum-the-grades-and-divide-by-the-number-of-students.">Calculate the average grade of the students. Use awk to sum the grades and divide by the number of students.</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>awk -F, ‘NR&gt;1 {sum += $5; count++} END {if (count &gt; 0) print sum/count}’ students.csv</p>
+</div>
+</div>
+</section>
+<section id="replace-all-occurrences-of-math-with-mathematics-in-the-file.-use-sed-to-perform-the-replacement." class="level2">
+<h2 class="anchored" data-anchor-id="replace-all-occurrences-of-math-with-mathematics-in-the-file.-use-sed-to-perform-the-replacement.">Replace all occurrences of “Math” with “Mathematics” in the file. Use sed to perform the replacement.</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>sed ‘s/Math/Mathematics/g’ students.csv</p>
+</div>
+</div>
+</section>
+<section id="put-all-the-commands-into-a-shell-script-.sh-file-and-run-the-command-below-to-show-the-output-from-all-the-commands-together." class="level2">
+<h2 class="anchored" data-anchor-id="put-all-the-commands-into-a-shell-script-.sh-file-and-run-the-command-below-to-show-the-output-from-all-the-commands-together.">Put all the commands into a shell script (.sh) file and run the command below to show the output from all the commands together.</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>created part2.sh with</strong> nano part2.sh</p>
+<p><strong>run with</strong> zsh part2.sh</p>
+<p><strong>output:</strong> +part2.sh:4&gt; wget -O students.csv https://raw.githubusercontent.com/stephaniehicks/jhustatprogramming2025/refs/heads/main/projects/01-project/students.csv –2025-11-07 23:04:48– https://raw.githubusercontent.com/stephaniehicks/jhustatprogramming2025/refs/heads/main/projects/01-project/students.csv Resolving raw.githubusercontent.com (raw.githubusercontent.com)… 185.199.110.133, 185.199.111.133, 185.199.108.133, … Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443… connected. HTTP request sent, awaiting response… 200 OK Length: 257 [text/plain] Saving to: ‘students.csv’</p>
+<p>students.csv 100%[=========================================================&gt;] 257 –.-KB/s in 0s</p>
+<p>2025-11-07 23:04:48 (18.9 MB/s) - ‘students.csv’ saved [257/257]</p>
+<p>+part2.sh:6&gt; cat students.csv ID,Name,Age,Gender,Grade,Subject 1,Alice,20,F,88,Math 2,Bob,22,M,76,History 3,Charlie,23,M,90,Math 4,Diana,21,F,85,Science 5,Eve,20,F,92,Math 6,Frank,22,M,72,History 7,Grace,23,F,78,Science 8,Heidi,21,F,88,Math 9,Ivan,20,M,85,Science 10,Judy,22,F,79,History</p>
+<p>+part2.sh:8&gt; head -n 5 students.csv ID,Name,Age,Gender,Grade,Subject 1,Alice,20,F,88,Math 2,Bob,22,M,76,History 3,Charlie,23,M,90,Math 4,Diana,21,F,85,Science</p>
+<p>+part2.sh:10&gt; tail -n 3 students.csv 8,Heidi,21,F,88,Math 9,Ivan,20,M,85,Science 10,Judy,22,F,79,History</p>
+<p>+part2.sh:12&gt; wc -l students.csv 10 students.csv</p>
+<p>+part2.sh:14&gt; grep Math students.csv 1,Alice,20,F,88,Math 3,Charlie,23,M,90,Math 5,Eve,20,F,92,Math 8,Heidi,21,F,88,Math</p>
+<p>+part2.sh:16&gt; grep ,F, students.csv 1,Alice,20,F,88,Math 4,Diana,21,F,85,Science 5,Eve,20,F,92,Math 7,Grace,23,F,78,Science 8,Heidi,21,F,88,Math 10,Judy,22,F,79,History</p>
+<p>+part2.sh:17&gt; sort -t, -k3,3n students.csv ID,Name,Age,Gender,Grade,Subject 1,Alice,20,F,88,Math 5,Eve,20,F,92,Math 9,Ivan,20,M,85,Science 4,Diana,21,F,85,Science 8,Heidi,21,F,88,Math 10,Judy,22,F,79,History 2,Bob,22,M,76,History 6,Frank,22,M,72,History 3,Charlie,23,M,90,Math 7,Grace,23,F,78,Science</p>
+<p>+part2.sh:19&gt; cut -d, -f6 students.csv</p>
+<p>+part2.sh:19&gt; tail -n +2</p>
+<p>+part2.sh:19&gt; sort</p>
+<p>+part2.sh:19&gt; uniq History Math Science</p>
+<p>+part2.sh:21&gt; awk -F, ‘NR&gt;1 {sum += $5; count++} END {if (count &gt; 0) print sum/count}’ students.csv 83.3</p>
+<p>+part2.sh:23&gt; sed s/Math/Mathematics/g students.csv ID,Name,Age,Gender,Grade,Subject 1,Alice,20,F,88,Mathematics 2,Bob,22,M,76,History 3,Charlie,23,M,90,Mathematics 4,Diana,21,F,85,Science 5,Eve,20,F,92,Mathematics 6,Frank,22,M,72,History 7,Grace,23,F,78,Science 8,Heidi,21,F,88,Mathematics 9,Ivan,20,M,85,Science 10,Judy,22,F,79,Histor</p>
+</div>
 </div>
 
 
