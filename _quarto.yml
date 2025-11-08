@@ -1,0 +1,15 @@
+project:
+  title: "project 1"
+  type: website
+
+website:
+  title: "Jacqueline Ferri -  Portfolio"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "About"
+        href: about.qmd
+      - text: "Analysis"
+        href: example_analysis.qmd
+  output-dir: ../docs   # renders HTML into the docs/ folder
