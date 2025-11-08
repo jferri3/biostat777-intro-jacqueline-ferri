@@ -1,17 +1,10 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "MMI program at Johns Hopkins Bloomberg School of Public Health\nI’m a student interested in how the microbiome shapes health and everyday life. I like working with data to see how tiny changes in microbial communities can make a big difference. Still figuring out where this will take me, but I’m excited to keep learning along the way.\n\n\n\n\nGitHub\nLinkedIn"
-  },
-  {
-    "objectID": "index.html#jacqueline-ferri",
-    "href": "index.html#jacqueline-ferri",
-    "title": "Home",
-    "section": "",
-    "text": "MMI program at Johns Hopkins Bloomberg School of Public Health\nI’m a student interested in how the microbiome shapes health and everyday life. I like working with data to see how tiny changes in microbial communities can make a big difference. Still figuring out where this will take me, but I’m excited to keep learning along the way.\n\n\n\n\nGitHub\nLinkedIn"
+    "text": "Hello!\nMy name is Jacqueline Ferri! I am a second year PhD student at the Johns Hopkins Bloomberg School of Public Health. I am originally from Massachusetts and moved to Maryland in 2022 to start working as a technician at Johns Hopkins before joining the Microbiology, Molecular Biology, and Immunology (MMI) PhD program in the Johns Hopkins Bloomberg School of Public health.\nI got my undergradaute degree from the University of Massachusetts Amherst, a Bachelors of Science in Biology which a focus on cell and molecular biology, and a minor in microbiology.\nI worked in the biopharmaceutical field for 3 years, working on the immunology side of early drug discovery. I applied to graduate schools for PhD programs, but was not successful so I moved to Maryland to take a research technician job at Johns Hopkins in the Sears Lab, working under Dr. Shaikh.\nAfter 2 years I applied again, and was accepted into the MMI program at JH BSPH!!\nSome fun facts about me . . .\n\nI play the piano, I have for about 20 years.\nI love to read, anything and everything but my favorites are fantasy.\nI am a first degree black belt in tae kwon do!\nI have two dogs!\n\n\n\n\n\nMy pup Luna — if she could get you to pet her through this screen, she would!\n\n\n\n\n\nMy second pup Zoe — she’s wondering why you haven’t figured out how to give her snacks through the screen!"
   },
   {
     "objectID": "example_analysis.html",
@@ -119,10 +112,24 @@
     "text": "Functions Used\ndplyr: group_by(), summarise(), mutate(), filter(), arrange(), count(), distinct(), drop_na(), left_join(), bind_rows(), slice_max(), slice_min()\nggplot2: geom_col(), geom_violin(), geom_point(), facet_wrap(), coord_flip(), labs(), theme_minimal(), scale_fill_manual(), geom_segment()\nknitr: kable()\nSnowballC: wordStem()"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "data_dictionary.html",
+    "href": "data_dictionary.html",
+    "title": "Data Dictionary",
     "section": "",
-    "text": "Hello!\nMy name is Jacqueline Ferri! I am a second year PhD student at the Johns Hopkins Bloomberg School of Public Health. I am originally from Massachusetts and moved to Maryland in 2022 to start working as a technician at Johns Hopkins before joining the Microbiology, Molecular Biology, and Immunology (MMI) PhD program in the Johns Hopkins Bloomberg School of Public health.\nI got my undergradaute degree from the University of Massachusetts Amherst, a Bachelors of Science in Biology which a focus on cell and molecular biology, and a minor in microbiology.\nI worked in the biopharmaceutical field for 3 years, working on the immunology side of early drug discovery. I applied to graduate schools for PhD programs, but was not successful so I moved to Maryland to take a research technician job at Johns Hopkins in the Sears Lab, working under Dr. Shaikh.\nAfter 2 years I applied again, and was accepted into the MMI program at JH BSPH!!\nSome fun facts about me . . .\n\nI play the piano, I have for about 20 years.\nI love to read, anything and everything but my favorites are fantasy.\nI am a first degree black belt in tae kwon do!\nI have two dogs!\n\n\n\n\n\nMy pup Luna — if she could get you to pet her through this screen, she would!\n\n\n\n\n\nMy second pup Zoe — she’s wondering why you haven’t figured out how to give her snacks through the screen!"
+    "text": "Data Dictionary\n\n\n\n\n\n\n\n\n\nColumn Name\nType\nDescription\nNotes / Example\n\n\n\n\nlanguage_code\ncharacter\nISO or custom code for the language\n“en”, “fr-CA-u-sd-caqc”\n\n\nlanguage_name\ncharacter\nName of the language\n“English”\n\n\nbad_word\ncharacter\nThe offensive or naughty word\n“damn”"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "MMI program at Johns Hopkins Bloomberg School of Public Health\nI’m a student interested in how the microbiome shapes health and everyday life. I like working with data to see how tiny changes in microbial communities can make a big difference. Still figuring out where this will take me, but I’m excited to keep learning along the way.\n\n\n\n\nGitHub\nLinkedIn"
+  },
+  {
+    "objectID": "index.html#jacqueline-ferri",
+    "href": "index.html#jacqueline-ferri",
+    "title": "Home",
+    "section": "",
+    "text": "MMI program at Johns Hopkins Bloomberg School of Public Health\nI’m a student interested in how the microbiome shapes health and everyday life. I like working with data to see how tiny changes in microbial communities can make a big difference. Still figuring out where this will take me, but I’m excited to keep learning along the way.\n\n\n\n\nGitHub\nLinkedIn"
   }
 ]
