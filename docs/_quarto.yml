@@ -19,4 +19,5 @@ format:
     toc: true
     css: styles.css
 
-output-dir: "." # renders html in current folder
+output-dir: docs
+
