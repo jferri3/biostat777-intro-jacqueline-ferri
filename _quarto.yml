@@ -1,0 +1,19 @@
+project:
+  title: "project 1"
+  type: website
+
+website:
+  title: "Jacqueline Ferri -  Portfolio"
+  navbar:
+    title: "Jacqueline Ferri"
+    left:
+      - text: Home
+        href: index.qmd
+      - text: About
+        href: about.qmd
+      - text: Example analysis
+        href: example-analysis.qmd
+format:
+  html:
+    theme: pulse
+    css: styles.css
