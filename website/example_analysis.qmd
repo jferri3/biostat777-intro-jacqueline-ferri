@@ -1,0 +1,293 @@
+---
+title: "Example Analysis"
+format:
+  html:
+    theme: pulse
+    css: styles.css
+bibliography: reference.bib
+---
+
+[This analysis investigates the use and presence of "bad" or naughty words across languages. Are there common trends? Which languages have the most or fewest words? How do the words vary in length and structure?]{style="color:purple;"}
+
+## Research Question
+
+How do “bad” words vary across languages and categories, and which languages or regions have the most extensive word lists?
+
+## Intended Audience
+
+This analysis is aimed at anyone curious about language variation in swear words.
+
+## Data Source
+
+Data were obtained from the [Liquidata “Bad Words” dataset on DoltHub](https://www.dolthub.com/repositories/Liquidata/bad-words)[@noauthor_liquidatabad-words_2020].
+
+See the data dictionary: [Data dictionary](data_dictionary.md)
+
+::: callout-note
+-   Contains lists of “bad words” from over 30 languages.
+
+-   Each record includes the word, language, category, and severity rating.
+
+-   Useful for text moderation, NLP, or studying linguistic variation.
+:::
+
+## Data Preparation
+
+We start by loading packages and the dataset, then cleaning it to remove duplicates and missing values. Language codes are converted into readable names in the newly added column 'language_name' for clarity.
+
+```{r, echo=TRUE, results='hide', warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(tidyr)
+library(SnowballC)
+library(knitr)
+library(purrr)
+
+#Load dataset
+bad_words <- read_csv("bad_words.csv")
+
+#Create lookup table for language names
+lang_lookup <- tibble::tibble(
+language_code = c("ar","cs","da","de","en","eo","es","fa","fi","fil",
+"fr","fr-CA-u-sd-caqc","hi","hu","it","ja","kab","ko",
+"nl","no","pl","pt","ro","ru","sv","th","tlh","tr","zh"),
+language_name = c("Arabic","Czech","Danish","German","English","Esperanto",
+"Spanish","Persian (Farsi)","Finnish","Filipino","French",
+"French (Canada - Quebec)","Hindi","Hungarian","Italian",
+"Japanese","Kabyle","Korean","Dutch","Norwegian","Polish",
+"Portuguese","Romanian","Russian","Swedish","Thai","Klingon",
+"Turkish","Chinese")
+)
+
+#Join language names
+bad_words_named <- bad_words %>%
+left_join(lang_lookup, by = "language_code")
+
+#Remove duplicates and missing values
+cleaned <- bad_words_named %>%
+distinct() %>%
+drop_na(language_code)
+```
+
+## Total Bad Words by Language
+
+We first count the total number of words per language to see which languages have the largest collections.
+
+```{r}
+words_per_language <- cleaned %>%
+count(language_name, sort = TRUE)
+
+#Bar plot
+ggplot(words_per_language, aes(x = reorder(language_name, n), y = n)) +
+geom_col(fill = "purple") +
+coord_flip() +
+labs(
+title = "Total Number of Bad Words per Language",
+x = "Language",
+y = "Number of Words"
+) +
+theme_minimal()
+```
+
+::: margin
+:::
+
+::: callout-note
+The results of my analysis are similar, but not exactly matching, to the ones published in this 2025 paper on vulgarity by Schweinberger and Burridge[@schweinberger_vulgarity_2025]. This study was done on vulgarity in online communication, while my chosen dataset is on language composition. ![Obsenity Graph showing bad words by language](obsenitygraph.jpeg)
+:::
+
+::: {column.margin}
+English and French have the most swear words. This may be due to cultural factors, media influence, informal speech traditions, and global reach of these languages.
+
+-   Swearing is shaped by culture and the loosening of formality in language
+
+-   Media, online forums and more forms of social connection which extend cultural reach may be at the root of the increase in swear words for these two language.
+
+-   Other cultural differences may be involved; such as traditions of informal speech and satire
+
+*sources*: [@janschewitz_science_2012], [@cassella_most_2022], [@noauthor_oh_nodate]
+:::
+
+## Languages with the most and last swear words
+
+We examine the top 10 and bottom 10 languages to compare them side by side.
+
+```{r}
+top_languages <- words_per_language %>% slice_max(n, n=10) %>% mutate(group="Most")
+bottom_languages <- words_per_language %>% slice_min(n, n=10) %>% mutate(group="Least")
+combined <- bind_rows(top_languages, bottom_languages)
+
+max_n <- max(combined$n)
+
+ggplot(combined, aes(x = reorder(language_name, n), y = n, fill = group)) +
+geom_col() +
+coord_flip() +
+facet_wrap(~group, scales = "free_y") +
+scale_y_continuous(limits=c(0, max_n)) +
+scale_fill_manual(values=c("Most"="purple","Least"="pink")) +
+labs(
+title = "Comparison of Top and Bottom Languages by Number of Bad Words",
+x = "Language",
+y = "Number of Words",
+fill = "Group"
+) +
+theme_minimal()
+```
+
+## Longest Bad Word Per Language
+
+I was interested in determining the longest word for each language. We look at the longest word for each language to explore the extremes in word length.
+
+```{r}
+top_words_per_lang <- cleaned %>%
+group_by(language_name) %>%
+slice_max(nchar(bad_word), n=1, with_ties=FALSE) %>%
+ungroup() %>%
+select(language_name, bad_word)
+
+knitr::kable(top_words_per_lang, caption="Longest Bad Word Per Language")
+```
+
+## Word Length Statistics
+
+We calculate the shortest, longest, median, and mean lengths of words per language.
+
+```{r}
+cleaned <- cleaned %>% mutate(word_length = nchar(bad_word))
+
+word_length_summary <- cleaned %>%
+group_by(language_name) %>%
+summarise(
+shortest = min(word_length),
+longest = max(word_length),
+median_length = median(word_length),
+mean_length = mean(word_length),
+.groups = 'drop'
+)
+
+ggplot(word_length_summary, aes(x = reorder(language_name, longest))) +
+  geom_segment(aes(xend = language_name, y = shortest, yend = longest), color = "violet", size = 1) +
+  geom_point(aes(y = longest), color = "purple", size = 3) +
+  geom_point(aes(y = shortest), color = "pink", size = 3) +
+  coord_flip() +
+  labs(
+    title = "Shortest and Longest Bad Words per Language",
+    x = "Language",
+    y = "Word Length (Characters)",
+    caption = "Lollipop chart showing range of word lengths per language"
+  ) +
+  theme_minimal()
+```
+
+## Common Roots and Stems
+
+Next, we explore recurring word roots to see which patterns appear most frequently.
+
+WARNING: this section includes the root of many swears, only expand if you are okay with graphic language
+
+::: {.callout-warning collapse="true"}
+```{r}
+# Languages supported by SnowballC
+supported_langs <- c("da", "nl", "en", "fi", "fr", "de", "hu", "it", "no", "pt", "ro", "ru", "es", "sv")
+
+# Add a column for stemmed words, stemming when language is supported
+bad_words_stemmed <- cleaned %>%
+  mutate(
+    stem = map2_chr(
+      bad_word,
+      language_code,
+      ~ if (.y %in% supported_langs) {
+          tryCatch(wordStem(.x, language = .y), error = function(e) substr(.x, 1, 4))
+        } else {
+          substr(.x, 1, 4)
+        }
+    ),
+    root = substr(stem, 1, 4)
+  )
+
+# Summarize across *all* languages
+root_summary <- bad_words_stemmed %>%
+  group_by(language_name, stem) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  filter(count > 2) %>%
+  arrange(stem, desc(count))
+
+# Display table
+root_summary %>%
+  select(language_name, stem, count) %>%
+  knitr::kable(caption = "Most Common Roots of Bad Words Across All Languages")
+```
+:::
+
+## Additional Analyses
+
+Average Word Length
+
+```{r}
+avg_length <- cleaned %>%
+group_by(language_name) %>%
+summarise(avg_length = mean(nchar(bad_word)), .groups="drop")
+
+ggplot(avg_length, aes(x=reorder(language_name, avg_length), y=avg_length)) +
+geom_col(fill="darkviolet") +
+coord_flip() +
+labs(title="Average Length of Bad Words by Language", x="Language", y="Average Characters") +
+theme_minimal()
+```
+
+## Range of Word Lengths
+
+```{r}
+# Violin plot of word lengths per language
+ggplot(cleaned, aes(x = reorder(language_name, word_length, FUN = median), y = word_length)) +
+  geom_violin(fill = "darkviolet", alpha = 0.7, color = "violet") +
+  stat_summary(fun = median, geom = "point", shape = 23, size = 2, fill = "skyblue") +
+  coord_flip() +
+  labs(
+    title = "Distribution of Bad Word Lengths per Language",
+    x = "Language",
+    y = "Word Length (Characters)",
+    caption = "Median shown as yellow diamond"
+  ) +
+  theme_minimal()
+
+```
+
+## Unique Roots Per Language
+
+```{r}
+bad_words_stemmed <- cleaned %>%
+mutate(stem = wordStem(bad_word)) %>%
+mutate(root = substr(bad_word, 1, 4)) # crude root approximation
+
+unique_roots_all <- bad_words_stemmed %>%
+group_by(language_name) %>%
+summarise(unique_roots = n_distinct(stem), .groups = "drop")
+
+ggplot(unique_roots_all, aes(x = reorder(language_name, unique_roots), y = unique_roots)) +
+geom_col(fill = "darkviolet") +
+coord_flip() +
+labs(
+title = "Number of Unique Roots per Language (All Languages Included)",
+x = "Language",
+y = "Number of Unique Roots"
+) +
+theme_minimal()
+```
+
+## Summary
+
+Across the dataset, English and French have the largest number of bad words, while some less widely spoken languages have far fewer entries. Word length varies widely, with some languages having extremely long or short words. Analysis of roots reveals patterns in how words are formed, and recurring stems highlight common linguistic structures. These insights could be valuable for NLP applications, content moderation, or cultural linguistic studies.
+
+# Functions
+
+## Functions Used
+
+**dplyr**: `group_by()`, `summarise()`, `mutate()`, `filter()`, `arrange()`, `count()`, `distinct()`, `drop_na()`, `left_join()`, `bind_rows()`, `slice_max()`, `slice_min()`
+
+**ggplot2**: `geom_col()`, `geom_violin()`, `geom_point()`, `facet_wrap()`, `coord_flip()`, `labs()`, `theme_minimal()`, `scale_fill_manual()`, `geom_segment()`
+
+**knitr**: `kable()`
+
+**SnowballC**: `wordStem()`
