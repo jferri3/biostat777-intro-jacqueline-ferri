@@ -14,9 +14,8 @@ format:
 :::
 
 ::: {.g-col-12 .g-col-md-8}
-## Jacqueline Ferri
 
-### Second Year PhD Student
+## Second Year PhD Student
 
 MMI program at Johns Hopkins Bloomberg School of Public Health
 
