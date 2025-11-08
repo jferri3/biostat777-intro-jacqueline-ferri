@@ -12,7 +12,7 @@ website:
       - text: About
         href: about.qmd
       - text: Example analysis
-        href: example-analysis.qmd
+        href: example_analysis.qmd
 format:
   html:
     theme: pulse
