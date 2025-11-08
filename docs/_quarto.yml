@@ -1,6 +1,7 @@
 project:
   title: "project 1"
   type: website
+  output-dir: _site
 
 website:
   title: "Jacqueline Ferri -  Portfolio"
@@ -13,7 +14,9 @@ website:
         href: about.qmd
       - text: Example analysis
         href: example_analysis.qmd
+    
 format:
   html:
     theme: pulse
+    toc: true
     css: styles.css
