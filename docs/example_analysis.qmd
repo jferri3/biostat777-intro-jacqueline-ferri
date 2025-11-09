@@ -4,18 +4,19 @@ format:
   html:
     theme: pulse
     css: styles.css
+    page-layout: article
 bibliography: reference.bib
 ---
 
-[This analysis investigates the use and presence of "bad" or naughty words across languages. Are there common trends? Which languages have the most or fewest words? How do the words vary in length and structure?]{style="color:purple;"}
+[This analysis investigates the use and presence of swears across languages. Are there common trends? Which languages have the most or fewest words? How do the words vary in length and structure?]{style="color:purple;"}
 
 ## Research Question
 
-How do “bad” words vary across languages and categories, and which languages or regions have the most extensive word lists?
+How do swears vary across languages and categories, and which languages or regions have the most extensive word lists?
 
 ## Intended Audience
 
-This analysis is aimed at anyone curious about language variation in swear words.
+This analysis is aimed at anyone curious about language variation in swears.
 
 ## Data Source
 
@@ -24,7 +25,7 @@ Data were obtained from the [Liquidata “Bad Words” dataset on DoltHub](https
 See the data dictionary: [Data dictionary](data_dictionary.md)
 
 ::: callout-note
--   Contains lists of “bad words” from over 30 languages.
+-   Contains lists of swears from ~30 languages.
 
 -   Each record includes the word, language, category, and severity rating.
 
@@ -43,6 +44,7 @@ library(tidyr)
 library(SnowballC)
 library(knitr)
 library(purrr)
+library(ggpubr)
 
 #Load dataset
 bad_words <- read_csv("bad_words.csv")
@@ -70,50 +72,86 @@ distinct() %>%
 drop_na(language_code)
 ```
 
-## Total Bad Words by Language
+## Total Swears by Language
 
-We first count the total number of words per language to see which languages have the largest collections.
+We first count the total number of words per language to see which languages have the largest collections. I am also interested in looking at some basic statistics; mean and standard deviation. 
+
+```{r}
+# Step 1: Prepare stats per language 
+cleaned <- cleaned %>% mutate(word_length = nchar(bad_word))
+
+language_stats <- cleaned %>%
+  group_by(language_name) %>%
+  summarise(
+    total_words = n(),               # total number of words
+    mean_length = mean(word_length), # mean word length
+    sd_length = sd(word_length),     # SD of word lengths
+    .groups = "drop"
+  )
+
+# Step 2: One-way ANOVA for mean word length differences 
+anova_result <- aov(word_length ~ language_name, data = cleaned)
+
+# Tukey HSD for pairwise differences
+tukey_result <- TukeyHSD(anova_result)
+
+# Step 3: Bar plot with SD error bars
+ggplot(language_stats, aes(x = reorder(language_name, total_words), y = total_words)) +
+  geom_col(fill = "purple") +
+  geom_errorbar(aes(ymin = total_words - sd_length, ymax = total_words + sd_length),
+                width = 0.3, color = "black") +
+  coord_flip() +
+  labs(
+    title = "Total Number of Swears per Language with SD",
+    x = "Language",
+    y = "Number of Words"
+  ) +
+  theme_minimal()
+```
+
+**English and French have the most number of swears compared to all other languages by almost half.**
+
+```{r}
+# Step 4: Alternate way of visualizing word length differences 
+ggplot(cleaned, aes(x = reorder(language_name, word_length, FUN = median), y = word_length)) +
+  geom_boxplot(aes(fill = language_name), outlier.alpha = 0.3) +
+  coord_flip() +
+  labs(
+    title = "Word Length Distribution by Language",
+    x = "Language",
+    y = "Word Length (Characters)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+**Average word length varies across languages, significantly. Geogrpahical location might have an effect on swear length - Western European languages and some Middle Eastern languages have longer swears, while Asian languages seem to have shorter swears. **
+
+::: {.column-margin}
+## While swearing and vulgarity are not necessarily the same concept; there are connections
+Here is a look at the prevalence of vulgarity in online communication — while not directly related to my research, it’s something I found interesting. This study by Schweinberger and Burridge [@schweinberger_vulgarity_2025] shows the prevalence of vulgar language in onlinecommunication in English-speaking regions. 
+
+
+![_Obsenity Graph showing swears by language_](obsenitygraph.jpeg)
+
+
+From my data, seen to the left, it can be observed that English and French have the most swears. This may be due to cultural factors, media influence, informal speech traditions, and global reach of these languages. Both languages, although English more so than French, are what I'll call socially accessible 
+
+- Swearing and vulgar language are shaped by culture and the loosening of formality in language  
+- Media, online forums, and more forms of social connection which extend cultural reach may be at the root of the increase in swears for these two languages.  
+- Other cultural differences may be involved, such as traditions of informal speech and satire  
+
+*sources*: [@janschewitz_science_2012], [@cassella_most_2022], [@noauthor_oh_nodate]
+:::
+
+## Languages with the most and last swears
+
+We examine the 10 languages with the most and least swears to compare them side by side.
 
 ```{r}
 words_per_language <- cleaned %>%
 count(language_name, sort = TRUE)
 
-#Bar plot
-ggplot(words_per_language, aes(x = reorder(language_name, n), y = n)) +
-geom_col(fill = "purple") +
-coord_flip() +
-labs(
-title = "Total Number of Bad Words per Language",
-x = "Language",
-y = "Number of Words"
-) +
-theme_minimal()
-```
-
-::: margin
-:::
-
-::: callout-note
-The results of my analysis are similar, but not exactly matching, to the ones published in this 2025 paper on vulgarity by Schweinberger and Burridge[@schweinberger_vulgarity_2025]. This study was done on vulgarity in online communication, while my chosen dataset is on language composition. ![Obsenity Graph showing bad words by language](obsenitygraph.jpeg)
-:::
-
-::: {column.margin}
-English and French have the most swear words. This may be due to cultural factors, media influence, informal speech traditions, and global reach of these languages.
-
--   Swearing is shaped by culture and the loosening of formality in language
-
--   Media, online forums and more forms of social connection which extend cultural reach may be at the root of the increase in swear words for these two language.
-
--   Other cultural differences may be involved; such as traditions of informal speech and satire
-
-*sources*: [@janschewitz_science_2012], [@cassella_most_2022], [@noauthor_oh_nodate]
-:::
-
-## Languages with the most and last swear words
-
-We examine the top 10 and bottom 10 languages to compare them side by side.
-
-```{r}
 top_languages <- words_per_language %>% slice_max(n, n=10) %>% mutate(group="Most")
 bottom_languages <- words_per_language %>% slice_min(n, n=10) %>% mutate(group="Least")
 combined <- bind_rows(top_languages, bottom_languages)
@@ -127,7 +165,7 @@ facet_wrap(~group, scales = "free_y") +
 scale_y_continuous(limits=c(0, max_n)) +
 scale_fill_manual(values=c("Most"="purple","Least"="pink")) +
 labs(
-title = "Comparison of Top and Bottom Languages by Number of Bad Words",
+title = "Comparison of Top and Bottom Languages by Number of bad Words",
 x = "Language",
 y = "Number of Words",
 fill = "Group"
@@ -135,9 +173,10 @@ fill = "Group"
 theme_minimal()
 ```
 
-## Longest Bad Word Per Language
+## Longest Swear Word Per Language
 
-I was interested in determining the longest word for each language. We look at the longest word for each language to explore the extremes in word length.
+I was interested in determining the longest word for each language. We look at the longest word for each language to explore the extremes in word length. The swears will also be displayed in a table to see examples of swears across languages.
+
 
 ```{r}
 top_words_per_lang <- cleaned %>%
@@ -146,7 +185,7 @@ slice_max(nchar(bad_word), n=1, with_ties=FALSE) %>%
 ungroup() %>%
 select(language_name, bad_word)
 
-knitr::kable(top_words_per_lang, caption="Longest Bad Word Per Language")
+knitr::kable(top_words_per_lang, caption="Longest Swear Word Per Language")
 ```
 
 ## Word Length Statistics
@@ -172,17 +211,21 @@ ggplot(word_length_summary, aes(x = reorder(language_name, longest))) +
   geom_point(aes(y = shortest), color = "pink", size = 3) +
   coord_flip() +
   labs(
-    title = "Shortest and Longest Bad Words per Language",
+    title = "Shortest and Longest Swears per Language",
     x = "Language",
-    y = "Word Length (Characters)",
+    y = "Swear Length (Characters)",
     caption = "Lollipop chart showing range of word lengths per language"
   ) +
   theme_minimal()
 ```
 
+**There is a wide range of length of swears across many languages - similar to what was seen earlier, the largest swear seems to vary by geographical location**
+
 ## Common Roots and Stems
 
-Next, we explore recurring word roots to see which patterns appear most frequently.
+Next, we explore recurring word roots to see which patterns appear most frequently. 
+
+This analysis will determine stems and roots for all swears included in the dataset, then filter for stems >/= 3. 
 
 WARNING: this section includes the root of many swears, only expand if you are okay with graphic language
 
@@ -216,7 +259,7 @@ root_summary <- bad_words_stemmed %>%
 # Display table
 root_summary %>%
   select(language_name, stem, count) %>%
-  knitr::kable(caption = "Most Common Roots of Bad Words Across All Languages")
+  knitr::kable(caption = "Most Common Roots of Swears Across All Languages")
 ```
 :::
 
@@ -232,9 +275,11 @@ summarise(avg_length = mean(nchar(bad_word)), .groups="drop")
 ggplot(avg_length, aes(x=reorder(language_name, avg_length), y=avg_length)) +
 geom_col(fill="darkviolet") +
 coord_flip() +
-labs(title="Average Length of Bad Words by Language", x="Language", y="Average Characters") +
+labs(title="Average Length of Swaer Words by Language", x="Language", y="Average Characters") +
 theme_minimal()
 ```
+
+**This analysis is dispalyed in alphabetical order of swear stems - it was interesting to see how many times different stems appear. Languages vary in regards to number of times a stem is used. **
 
 ## Range of Word Lengths
 
@@ -245,7 +290,7 @@ ggplot(cleaned, aes(x = reorder(language_name, word_length, FUN = median), y = w
   stat_summary(fun = median, geom = "point", shape = 23, size = 2, fill = "skyblue") +
   coord_flip() +
   labs(
-    title = "Distribution of Bad Word Lengths per Language",
+    title = "Distribution of Swear Word Lengths per Language",
     x = "Language",
     y = "Word Length (Characters)",
     caption = "Median shown as yellow diamond"
@@ -278,11 +323,9 @@ theme_minimal()
 
 ## Summary
 
-Across the dataset, English and French have the largest number of bad words, while some less widely spoken languages have far fewer entries. Word length varies widely, with some languages having extremely long or short words. Analysis of roots reveals patterns in how words are formed, and recurring stems highlight common linguistic structures. These insights could be valuable for NLP applications, content moderation, or cultural linguistic studies.
+Across the dataset, English and French have the largest number of swears, while some less widely spoken languages have far fewer entries. Swear length varies widely, with some languages having extremely long or short swears. Most languages have swears with only a handful of characters, but a few languages have exceedlingly long swears; English, Italian, Russian, Dutch, and Persian all have swears over 30 characters. My favorite part of the analysis was looking at the common stems for swears, even between languages there are some visual similarities between the stems. 
 
 # Functions
-
-## Functions Used
 
 **dplyr**: `group_by()`, `summarise()`, `mutate()`, `filter()`, `arrange()`, `count()`, `distinct()`, `drop_na()`, `left_join()`, `bind_rows()`, `slice_max()`, `slice_min()`
 

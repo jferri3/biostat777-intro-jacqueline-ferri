@@ -10,9 +10,9 @@ Hello!
 
 My name is Jacqueline Ferri! I am a second year PhD student at the Johns Hopkins Bloomberg School of Public Health. I am originally from Massachusetts and moved to Maryland in 2022 to start working as a technician at Johns Hopkins before joining the Microbiology, Molecular Biology, and Immunology (MMI) PhD program in the Johns Hopkins Bloomberg School of Public health.
 
-I got my undergradaute degree from the University of Massachusetts Amherst, a Bachelors of Science in Biology which a focus on cell and molecular biology, and a minor in microbiology. 
+I got my undergraduate degree from the University of Massachusetts Amherst, a Bachelors of Science in Biology which a focus on cell and molecular biology, and a minor in microbiology. 
 
-I worked in the biopharmaceutical field for 3 years, working on the immunology side of early drug discovery. I applied to graduate schools for PhD programs, but was not successful so I moved to Maryland to take a research technician job at Johns Hopkins in the Sears Lab, working under Dr. Shaikh. 
+I worked in the pharmaceutical field for 3 years, working on the immunology side of early drug discovery. I applied to graduate schools for PhD programs, but was not successful so I moved to Maryland to take a research technician job at Johns Hopkins in the Sears Lab, working under Dr. Shaikh. 
 
 After 2 years I applied again, and was accepted into the MMI program at JH BSPH!! 
 
@@ -35,7 +35,7 @@ Some fun facts about me . . .
 
   <figure style="text-align: center;">
     <img src="zoepic.jpeg" alt="Picture of Zoe" width="400">
-    <figcaption>My second pup Zoe — she’s wondering why you haven’t figured out how to give her snacks through the screen!</figcaption>
+    <figcaption>My pup Zoe — she’s wondering why you haven’t figured out how to give her snacks through the screen!</figcaption>
   </figure>
 
 </div>

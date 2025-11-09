@@ -179,24 +179,22 @@ div.csl-indent {
   <li><a href="#intended-audience" id="toc-intended-audience" class="nav-link" data-scroll-target="#intended-audience">Intended Audience</a></li>
   <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">Data Source</a></li>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a></li>
-  <li><a href="#total-bad-words-by-language" id="toc-total-bad-words-by-language" class="nav-link" data-scroll-target="#total-bad-words-by-language">Total Bad Words by Language</a></li>
-  <li><a href="#languages-with-the-most-and-last-swear-words" id="toc-languages-with-the-most-and-last-swear-words" class="nav-link" data-scroll-target="#languages-with-the-most-and-last-swear-words">Languages with the most and last swear words</a></li>
-  <li><a href="#longest-bad-word-per-language" id="toc-longest-bad-word-per-language" class="nav-link" data-scroll-target="#longest-bad-word-per-language">Longest Bad Word Per Language</a></li>
+  <li><a href="#total-swears-by-language" id="toc-total-swears-by-language" class="nav-link" data-scroll-target="#total-swears-by-language">Total Swears by Language</a></li>
+  <li><a href="#while-swearing-and-vulgarity-are-not-necessarily-the-same-concept-there-are-connections" id="toc-while-swearing-and-vulgarity-are-not-necessarily-the-same-concept-there-are-connections" class="nav-link" data-scroll-target="#while-swearing-and-vulgarity-are-not-necessarily-the-same-concept-there-are-connections">While swearing and vulgarity are not necessarily the same concept; there are connections</a></li>
+  <li><a href="#languages-with-the-most-and-last-swears" id="toc-languages-with-the-most-and-last-swears" class="nav-link" data-scroll-target="#languages-with-the-most-and-last-swears">Languages with the most and last swears</a></li>
+  <li><a href="#longest-swear-word-per-language" id="toc-longest-swear-word-per-language" class="nav-link" data-scroll-target="#longest-swear-word-per-language">Longest Swear Word Per Language</a></li>
   <li><a href="#word-length-statistics" id="toc-word-length-statistics" class="nav-link" data-scroll-target="#word-length-statistics">Word Length Statistics</a></li>
   <li><a href="#common-roots-and-stems" id="toc-common-roots-and-stems" class="nav-link" data-scroll-target="#common-roots-and-stems">Common Roots and Stems</a></li>
   <li><a href="#additional-analyses" id="toc-additional-analyses" class="nav-link" data-scroll-target="#additional-analyses">Additional Analyses</a></li>
   <li><a href="#range-of-word-lengths" id="toc-range-of-word-lengths" class="nav-link" data-scroll-target="#range-of-word-lengths">Range of Word Lengths</a></li>
   <li><a href="#unique-roots-per-language" id="toc-unique-roots-per-language" class="nav-link" data-scroll-target="#unique-roots-per-language">Unique Roots Per Language</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a>
-  <ul class="collapse">
-  <li><a href="#functions-used" id="toc-functions-used" class="nav-link" data-scroll-target="#functions-used">Functions Used</a></li>
-  </ul></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -217,14 +215,14 @@ div.csl-indent {
 </header>
 
 
-<p><span style="color:purple;">This analysis investigates the use and presence of “bad” or naughty words across languages. Are there common trends? Which languages have the most or fewest words? How do the words vary in length and structure?</span></p>
+<p><span style="color:purple;">This analysis investigates the use and presence of swears across languages. Are there common trends? Which languages have the most or fewest words? How do the words vary in length and structure?</span></p>
 <section id="research-question" class="level2">
 <h2 class="anchored" data-anchor-id="research-question">Research Question</h2>
-<p>How do “bad” words vary across languages and categories, and which languages or regions have the most extensive word lists?</p>
+<p>How do swears vary across languages and categories, and which languages or regions have the most extensive word lists?</p>
 </section>
 <section id="intended-audience" class="level2">
 <h2 class="anchored" data-anchor-id="intended-audience">Intended Audience</h2>
-<p>This analysis is aimed at anyone curious about language variation in swear words.</p>
+<p>This analysis is aimed at anyone curious about language variation in swears.</p>
 </section>
 <section id="data-source" class="level2">
 <h2 class="anchored" data-anchor-id="data-source">Data Source</h2>
@@ -241,7 +239,7 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>Contains lists of “bad words” from over 30 languages.</p></li>
+<li><p>Contains lists of swears from ~30 languages.</p></li>
 <li><p>Each record includes the word, language, category, and severity rating.</p></li>
 <li><p>Useful for text moderation, NLP, or studying linguistic variation.</p></li>
 </ul>
@@ -259,50 +257,68 @@ Note
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SnowballC)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Load dataset</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>bad_words <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"bad_words.csv"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Create lookup table for language names</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>lang_lookup <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">language_code =</span> <span class="fu">c</span>(<span class="st">"ar"</span>,<span class="st">"cs"</span>,<span class="st">"da"</span>,<span class="st">"de"</span>,<span class="st">"en"</span>,<span class="st">"eo"</span>,<span class="st">"es"</span>,<span class="st">"fa"</span>,<span class="st">"fi"</span>,<span class="st">"fil"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">"fr"</span>,<span class="st">"fr-CA-u-sd-caqc"</span>,<span class="st">"hi"</span>,<span class="st">"hu"</span>,<span class="st">"it"</span>,<span class="st">"ja"</span>,<span class="st">"kab"</span>,<span class="st">"ko"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">"nl"</span>,<span class="st">"no"</span>,<span class="st">"pl"</span>,<span class="st">"pt"</span>,<span class="st">"ro"</span>,<span class="st">"ru"</span>,<span class="st">"sv"</span>,<span class="st">"th"</span>,<span class="st">"tlh"</span>,<span class="st">"tr"</span>,<span class="st">"zh"</span>),</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">language_name =</span> <span class="fu">c</span>(<span class="st">"Arabic"</span>,<span class="st">"Czech"</span>,<span class="st">"Danish"</span>,<span class="st">"German"</span>,<span class="st">"English"</span>,<span class="st">"Esperanto"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="st">"Spanish"</span>,<span class="st">"Persian (Farsi)"</span>,<span class="st">"Finnish"</span>,<span class="st">"Filipino"</span>,<span class="st">"French"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="st">"French (Canada - Quebec)"</span>,<span class="st">"Hindi"</span>,<span class="st">"Hungarian"</span>,<span class="st">"Italian"</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="st">"Japanese"</span>,<span class="st">"Kabyle"</span>,<span class="st">"Korean"</span>,<span class="st">"Dutch"</span>,<span class="st">"Norwegian"</span>,<span class="st">"Polish"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="st">"Portuguese"</span>,<span class="st">"Romanian"</span>,<span class="st">"Russian"</span>,<span class="st">"Swedish"</span>,<span class="st">"Thai"</span>,<span class="st">"Klingon"</span>,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="st">"Turkish"</span>,<span class="st">"Chinese"</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#Join language names</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>bad_words_named <span class="ot">&lt;-</span> bad_words <span class="sc">%&gt;%</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(lang_lookup, <span class="at">by =</span> <span class="st">"language_code"</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove duplicates and missing values</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>cleaned <span class="ot">&lt;-</span> bad_words_named <span class="sc">%&gt;%</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">drop_na</span>(language_code)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Load dataset</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>bad_words <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"bad_words.csv"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Create lookup table for language names</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>lang_lookup <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">language_code =</span> <span class="fu">c</span>(<span class="st">"ar"</span>,<span class="st">"cs"</span>,<span class="st">"da"</span>,<span class="st">"de"</span>,<span class="st">"en"</span>,<span class="st">"eo"</span>,<span class="st">"es"</span>,<span class="st">"fa"</span>,<span class="st">"fi"</span>,<span class="st">"fil"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">"fr"</span>,<span class="st">"fr-CA-u-sd-caqc"</span>,<span class="st">"hi"</span>,<span class="st">"hu"</span>,<span class="st">"it"</span>,<span class="st">"ja"</span>,<span class="st">"kab"</span>,<span class="st">"ko"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">"nl"</span>,<span class="st">"no"</span>,<span class="st">"pl"</span>,<span class="st">"pt"</span>,<span class="st">"ro"</span>,<span class="st">"ru"</span>,<span class="st">"sv"</span>,<span class="st">"th"</span>,<span class="st">"tlh"</span>,<span class="st">"tr"</span>,<span class="st">"zh"</span>),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">language_name =</span> <span class="fu">c</span>(<span class="st">"Arabic"</span>,<span class="st">"Czech"</span>,<span class="st">"Danish"</span>,<span class="st">"German"</span>,<span class="st">"English"</span>,<span class="st">"Esperanto"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="st">"Spanish"</span>,<span class="st">"Persian (Farsi)"</span>,<span class="st">"Finnish"</span>,<span class="st">"Filipino"</span>,<span class="st">"French"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="st">"French (Canada - Quebec)"</span>,<span class="st">"Hindi"</span>,<span class="st">"Hungarian"</span>,<span class="st">"Italian"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="st">"Japanese"</span>,<span class="st">"Kabyle"</span>,<span class="st">"Korean"</span>,<span class="st">"Dutch"</span>,<span class="st">"Norwegian"</span>,<span class="st">"Polish"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="st">"Portuguese"</span>,<span class="st">"Romanian"</span>,<span class="st">"Russian"</span>,<span class="st">"Swedish"</span>,<span class="st">"Thai"</span>,<span class="st">"Klingon"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="st">"Turkish"</span>,<span class="st">"Chinese"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#Join language names</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>bad_words_named <span class="ot">&lt;-</span> bad_words <span class="sc">%&gt;%</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(lang_lookup, <span class="at">by =</span> <span class="st">"language_code"</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove duplicates and missing values</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>cleaned <span class="ot">&lt;-</span> bad_words_named <span class="sc">%&gt;%</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">drop_na</span>(language_code)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="total-bad-words-by-language" class="level2">
-<h2 class="anchored" data-anchor-id="total-bad-words-by-language">Total Bad Words by Language</h2>
-<p>We first count the total number of words per language to see which languages have the largest collections.</p>
+<section id="total-swears-by-language" class="level2">
+<h2 class="anchored" data-anchor-id="total-swears-by-language">Total Swears by Language</h2>
+<p>We first count the total number of words per language to see which languages have the largest collections. I am also interested in looking at some basic statistics; mean and standard deviation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>words_per_language <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(language_name, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Prepare stats per language </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cleaned <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">word_length =</span> <span class="fu">nchar</span>(bad_word))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Bar plot</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(words_per_language, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(language_name, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Total Number of Bad Words per Language"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Language"</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Number of Words"</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>language_stats <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(language_name) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_words =</span> <span class="fu">n</span>(),               <span class="co"># total number of words</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_length =</span> <span class="fu">mean</span>(word_length), <span class="co"># mean word length</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_length =</span> <span class="fu">sd</span>(word_length),     <span class="co"># SD of word lengths</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: One-way ANOVA for mean word length differences </span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(word_length <span class="sc">~</span> language_name, <span class="at">data =</span> cleaned)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Tukey HSD for pairwise differences</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_result)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Bar plot with SD error bars</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(language_stats, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(language_name, total_words), <span class="at">y =</span> total_words)) <span class="sc">+</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> total_words <span class="sc">-</span> sd_length, <span class="at">ymax =</span> total_words <span class="sc">+</span> sd_length),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total Number of Swears per Language with SD"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Language"</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Words"</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -311,55 +327,19 @@ Note
 </div>
 </div>
 </div>
-<div class="margin">
-
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The results of my analysis are similar, but not exactly matching, to the ones published in this 2025 paper on vulgarity by Schweinberger and Burridge<span class="citation" data-cites="schweinberger_vulgarity_2025">(<a href="#ref-schweinberger_vulgarity_2025" role="doc-biblioref">Schweinberger and Burridge 2025</a>)</span>. This study was done on vulgarity in online communication, while my chosen dataset is on language composition. <img src="obsenitygraph.jpeg" class="img-fluid" alt="Obsenity Graph showing bad words by language"></p>
-</div>
-</div>
-<div class="{column.margin}">
-<p>English and French have the most swear words. This may be due to cultural factors, media influence, informal speech traditions, and global reach of these languages.</p>
-<ul>
-<li><p>Swearing is shaped by culture and the loosening of formality in language</p></li>
-<li><p>Media, online forums and more forms of social connection which extend cultural reach may be at the root of the increase in swear words for these two language.</p></li>
-<li><p>Other cultural differences may be involved; such as traditions of informal speech and satire</p></li>
-</ul>
-<p><em>sources</em>: <span class="citation" data-cites="janschewitz_science_2012">(<a href="#ref-janschewitz_science_2012" role="doc-biblioref">Janschewitz 2012</a>)</span>, <span class="citation" data-cites="cassella_most_2022">(<a href="#ref-cassella_most_2022" role="doc-biblioref">Cassella 2022</a>)</span>, <span class="citation" data-cites="noauthor_oh_nodate">(<a href="#ref-noauthor_oh_nodate" role="doc-biblioref"><span>“Oh, <span>Sh</span>*t! <span>Which</span> <span>Country</span> <span>Swears</span> the <span>Most</span> <span>Online</span>? <span></span> <span>ARDC</span>”</span> n.d.</a>)</span></p>
-</div>
-</section>
-<section id="languages-with-the-most-and-last-swear-words" class="level2">
-<h2 class="anchored" data-anchor-id="languages-with-the-most-and-last-swear-words">Languages with the most and last swear words</h2>
-<p>We examine the top 10 and bottom 10 languages to compare them side by side.</p>
+<p><strong>English and French have the most number of swears compared to all other languages by almost half.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>top_languages <span class="ot">&lt;-</span> words_per_language <span class="sc">%&gt;%</span> <span class="fu">slice_max</span>(n, <span class="at">n=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">group=</span><span class="st">"Most"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bottom_languages <span class="ot">&lt;-</span> words_per_language <span class="sc">%&gt;%</span> <span class="fu">slice_min</span>(n, <span class="at">n=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">group=</span><span class="st">"Least"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(top_languages, bottom_languages)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>max_n <span class="ot">&lt;-</span> <span class="fu">max</span>(combined<span class="sc">$</span>n)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(language_name, n), <span class="at">y =</span> n, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">facet_wrap</span>(<span class="sc">~</span>group, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, max_n)) <span class="sc">+</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"Most"</span><span class="ot">=</span><span class="st">"purple"</span>,<span class="st">"Least"</span><span class="ot">=</span><span class="st">"pink"</span>)) <span class="sc">+</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Comparison of Top and Bottom Languages by Number of Bad Words"</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Language"</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Number of Words"</span>,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="at">fill =</span> <span class="st">"Group"</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Alternate way of visualizing word length differences </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cleaned, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(language_name, word_length, <span class="at">FUN =</span> median), <span class="at">y =</span> word_length)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> language_name), <span class="at">outlier.alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Word Length Distribution by Language"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Language"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Word Length (Characters)"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -368,21 +348,76 @@ Note
 </div>
 </div>
 </div>
+<p><strong>Average word length varies across languages, significantly. Geogrpahical location might have an effect on swear length - Western European languages and some Middle Eastern languages have longer swears, while Asian languages seem to have shorter swears. </strong></p>
 </section>
-<section id="longest-bad-word-per-language" class="level2">
-<h2 class="anchored" data-anchor-id="longest-bad-word-per-language">Longest Bad Word Per Language</h2>
-<p>I was interested in determining the longest word for each language. We look at the longest word for each language to explore the extremes in word length.</p>
+
+<div class="no-row-height column-margin column-container"><section id="while-swearing-and-vulgarity-are-not-necessarily-the-same-concept-there-are-connections" class="level2">
+<h2 class="anchored" data-anchor-id="while-swearing-and-vulgarity-are-not-necessarily-the-same-concept-there-are-connections">While swearing and vulgarity are not necessarily the same concept; there are connections</h2>
+<p>Here is a look at the prevalence of vulgarity in online communication — while not directly related to my research, it’s something I found interesting. This study by Schweinberger and Burridge <span class="citation" data-cites="schweinberger_vulgarity_2025">(<a href="#ref-schweinberger_vulgarity_2025" role="doc-biblioref">Schweinberger and Burridge 2025</a>)</span> shows the prevalence of vulgar language in onlinecommunication in English-speaking regions.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="obsenitygraph.jpeg" class="img-fluid figure-img"></p>
+<figcaption><em>Obsenity Graph showing swears by language</em></figcaption>
+</figure>
+</div>
+<p>From my data, seen to the left, it can be observed that English and French have the most swears. This may be due to cultural factors, media influence, informal speech traditions, and global reach of these languages. Both languages, although English more so than French, are what I’ll call socially accessible</p>
+<ul>
+<li>Swearing and vulgar language are shaped by culture and the loosening of formality in language<br>
+</li>
+<li>Media, online forums, and more forms of social connection which extend cultural reach may be at the root of the increase in swears for these two languages.<br>
+</li>
+<li>Other cultural differences may be involved, such as traditions of informal speech and satire</li>
+</ul>
+<p><em>sources</em>: <span class="citation" data-cites="janschewitz_science_2012">(<a href="#ref-janschewitz_science_2012" role="doc-biblioref">Janschewitz 2012</a>)</span>, <span class="citation" data-cites="cassella_most_2022">(<a href="#ref-cassella_most_2022" role="doc-biblioref">Cassella 2022</a>)</span>, <span class="citation" data-cites="noauthor_oh_nodate">(<a href="#ref-noauthor_oh_nodate" role="doc-biblioref"><span>“Oh, <span>Sh</span>*t! <span>Which</span> <span>Country</span> <span>Swears</span> the <span>Most</span> <span>Online</span>? <span></span> <span>ARDC</span>”</span> n.d.</a>)</span></p>
+</section></div><section id="languages-with-the-most-and-last-swears" class="level2">
+<h2 class="anchored" data-anchor-id="languages-with-the-most-and-last-swears">Languages with the most and last swears</h2>
+<p>We examine the 10 languages with the most and least swears to compare them side by side.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>top_words_per_lang <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(language_name) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_max</span>(<span class="fu">nchar</span>(bad_word), <span class="at">n=</span><span class="dv">1</span>, <span class="at">with_ties=</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(language_name, bad_word)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(top_words_per_lang, <span class="at">caption=</span><span class="st">"Longest Bad Word Per Language"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>words_per_language <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(language_name, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>top_languages <span class="ot">&lt;-</span> words_per_language <span class="sc">%&gt;%</span> <span class="fu">slice_max</span>(n, <span class="at">n=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">group=</span><span class="st">"Most"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>bottom_languages <span class="ot">&lt;-</span> words_per_language <span class="sc">%&gt;%</span> <span class="fu">slice_min</span>(n, <span class="at">n=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">group=</span><span class="st">"Least"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(top_languages, bottom_languages)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>max_n <span class="ot">&lt;-</span> <span class="fu">max</span>(combined<span class="sc">$</span>n)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(language_name, n), <span class="at">y =</span> n, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">facet_wrap</span>(<span class="sc">~</span>group, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, max_n)) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"Most"</span><span class="ot">=</span><span class="st">"purple"</span>,<span class="st">"Least"</span><span class="ot">=</span><span class="st">"pink"</span>)) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Comparison of Top and Bottom Languages by Number of bad Words"</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Language"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Number of Words"</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="at">fill =</span> <span class="st">"Group"</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="example_analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="longest-swear-word-per-language" class="level2">
+<h2 class="anchored" data-anchor-id="longest-swear-word-per-language">Longest Swear Word Per Language</h2>
+<p>I was interested in determining the longest word for each language. We look at the longest word for each language to explore the extremes in word length. The swears will also be displayed in a table to see examples of swears across languages.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>top_words_per_lang <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(language_name) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_max</span>(<span class="fu">nchar</span>(bad_word), <span class="at">n=</span><span class="dv">1</span>, <span class="at">with_ties=</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(language_name, bad_word)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(top_words_per_lang, <span class="at">caption=</span><span class="st">"Longest Swear Word Per Language"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Longest Bad Word Per Language</caption>
+<caption>Longest Swear Word Per Language</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">language_name</th>
@@ -515,30 +550,30 @@ Note
 <h2 class="anchored" data-anchor-id="word-length-statistics">Word Length Statistics</h2>
 <p>We calculate the shortest, longest, median, and mean lengths of words per language.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cleaned <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">word_length =</span> <span class="fu">nchar</span>(bad_word))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>word_length_summary <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(language_name) <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">shortest =</span> <span class="fu">min</span>(word_length),</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">longest =</span> <span class="fu">max</span>(word_length),</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">median_length =</span> <span class="fu">median</span>(word_length),</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">mean_length =</span> <span class="fu">mean</span>(word_length),</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">.groups =</span> <span class="st">'drop'</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(word_length_summary, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(language_name, longest))) <span class="sc">+</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> language_name, <span class="at">y =</span> shortest, <span class="at">yend =</span> longest), <span class="at">color =</span> <span class="st">"violet"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> longest), <span class="at">color =</span> <span class="st">"purple"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> shortest), <span class="at">color =</span> <span class="st">"pink"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Shortest and Longest Bad Words per Language"</span>,</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Language"</span>,</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Word Length (Characters)"</span>,</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Lollipop chart showing range of word lengths per language"</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cleaned <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">word_length =</span> <span class="fu">nchar</span>(bad_word))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>word_length_summary <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(language_name) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">shortest =</span> <span class="fu">min</span>(word_length),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">longest =</span> <span class="fu">max</span>(word_length),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">median_length =</span> <span class="fu">median</span>(word_length),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="at">mean_length =</span> <span class="fu">mean</span>(word_length),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="at">.groups =</span> <span class="st">'drop'</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(word_length_summary, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(language_name, longest))) <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> language_name, <span class="at">y =</span> shortest, <span class="at">yend =</span> longest), <span class="at">color =</span> <span class="st">"violet"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> longest), <span class="at">color =</span> <span class="st">"purple"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> shortest), <span class="at">color =</span> <span class="st">"pink"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Shortest and Longest Swears per Language"</span>,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Language"</span>,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Swear Length (Characters)"</span>,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Lollipop chart showing range of word lengths per language"</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ℹ Please use `linewidth` instead.</code></pre>
@@ -546,18 +581,20 @@ Note
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="example_analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="example_analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p><strong>There is a wide range of length of swears across many languages - similar to what was seen earlier, the largest swear seems to vary by geographical location</strong></p>
 </section>
 <section id="common-roots-and-stems" class="level2">
 <h2 class="anchored" data-anchor-id="common-roots-and-stems">Common Roots and Stems</h2>
 <p>Next, we explore recurring word roots to see which patterns appear most frequently.</p>
+<p>This analysis will determine stems and roots for all swears included in the dataset, then filter for stems &gt;/= 3.</p>
 <p>WARNING: this section includes the root of many swears, only expand if you are okay with graphic language</p>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -566,41 +603,41 @@ Warning
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Languages supported by SnowballC</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>supported_langs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"da"</span>, <span class="st">"nl"</span>, <span class="st">"en"</span>, <span class="st">"fi"</span>, <span class="st">"fr"</span>, <span class="st">"de"</span>, <span class="st">"hu"</span>, <span class="st">"it"</span>, <span class="st">"no"</span>, <span class="st">"pt"</span>, <span class="st">"ro"</span>, <span class="st">"ru"</span>, <span class="st">"es"</span>, <span class="st">"sv"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column for stemmed words, stemming when language is supported</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>bad_words_stemmed <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">stem =</span> <span class="fu">map2_chr</span>(</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      bad_word,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      language_code,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="cf">if</span> (.y <span class="sc">%in%</span> supported_langs) {</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>          <span class="fu">tryCatch</span>(<span class="fu">wordStem</span>(.x, <span class="at">language =</span> .y), <span class="at">error =</span> <span class="cf">function</span>(e) <span class="fu">substr</span>(.x, <span class="dv">1</span>, <span class="dv">4</span>))</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>          <span class="fu">substr</span>(.x, <span class="dv">1</span>, <span class="dv">4</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">root =</span> <span class="fu">substr</span>(stem, <span class="dv">1</span>, <span class="dv">4</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize across *all* languages</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>root_summary <span class="ot">&lt;-</span> bad_words_stemmed <span class="sc">%&gt;%</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(language_name, stem) <span class="sc">%&gt;%</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(count <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(stem, <span class="fu">desc</span>(count))</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>root_summary <span class="sc">%&gt;%</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(language_name, stem, count) <span class="sc">%&gt;%</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Most Common Roots of Bad Words Across All Languages"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Languages supported by SnowballC</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>supported_langs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"da"</span>, <span class="st">"nl"</span>, <span class="st">"en"</span>, <span class="st">"fi"</span>, <span class="st">"fr"</span>, <span class="st">"de"</span>, <span class="st">"hu"</span>, <span class="st">"it"</span>, <span class="st">"no"</span>, <span class="st">"pt"</span>, <span class="st">"ro"</span>, <span class="st">"ru"</span>, <span class="st">"es"</span>, <span class="st">"sv"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column for stemmed words, stemming when language is supported</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>bad_words_stemmed <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">stem =</span> <span class="fu">map2_chr</span>(</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      bad_word,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      language_code,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="cf">if</span> (.y <span class="sc">%in%</span> supported_langs) {</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>          <span class="fu">tryCatch</span>(<span class="fu">wordStem</span>(.x, <span class="at">language =</span> .y), <span class="at">error =</span> <span class="cf">function</span>(e) <span class="fu">substr</span>(.x, <span class="dv">1</span>, <span class="dv">4</span>))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>          <span class="fu">substr</span>(.x, <span class="dv">1</span>, <span class="dv">4</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">root =</span> <span class="fu">substr</span>(stem, <span class="dv">1</span>, <span class="dv">4</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize across *all* languages</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>root_summary <span class="ot">&lt;-</span> bad_words_stemmed <span class="sc">%&gt;%</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(language_name, stem) <span class="sc">%&gt;%</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(count <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(stem, <span class="fu">desc</span>(count))</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>root_summary <span class="sc">%&gt;%</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(language_name, stem, count) <span class="sc">%&gt;%</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Most Common Roots of Swears Across All Languages"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Most Common Roots of Bad Words Across All Languages</caption>
+<caption>Most Common Roots of Swears Across All Languages</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">language_name</th>
@@ -1111,39 +1148,15 @@ Warning
 <h2 class="anchored" data-anchor-id="additional-analyses">Additional Analyses</h2>
 <p>Average Word Length</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>avg_length <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(language_name) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">avg_length =</span> <span class="fu">mean</span>(<span class="fu">nchar</span>(bad_word)), <span class="at">.groups=</span><span class="st">"drop"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(avg_length, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(language_name, avg_length), <span class="at">y=</span>avg_length)) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"darkviolet"</span>) <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Average Length of Bad Words by Language"</span>, <span class="at">x=</span><span class="st">"Language"</span>, <span class="at">y=</span><span class="st">"Average Characters"</span>) <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="example_analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="range-of-word-lengths" class="level2">
-<h2 class="anchored" data-anchor-id="range-of-word-lengths">Range of Word Lengths</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Violin plot of word lengths per language</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cleaned, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(language_name, word_length, <span class="at">FUN =</span> median), <span class="at">y =</span> word_length)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"darkviolet"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"violet"</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> median, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">shape =</span> <span class="dv">23</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Bad Word Lengths per Language"</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Language"</span>,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Word Length (Characters)"</span>,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Median shown as yellow diamond"</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>avg_length <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(language_name) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">avg_length =</span> <span class="fu">mean</span>(<span class="fu">nchar</span>(bad_word)), <span class="at">.groups=</span><span class="st">"drop"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(avg_length, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(language_name, avg_length), <span class="at">y=</span>avg_length)) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"darkviolet"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Average Length of Swaer Words by Language"</span>, <span class="at">x=</span><span class="st">"Language"</span>, <span class="at">y=</span><span class="st">"Average Characters"</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1152,27 +1165,23 @@ Warning
 </div>
 </div>
 </div>
+<p><strong>This analysis is dispalyed in alphabetical order of swear stems - it was interesting to see how many times different stems appear. Languages vary in regards to number of times a stem is used. </strong></p>
 </section>
-<section id="unique-roots-per-language" class="level2">
-<h2 class="anchored" data-anchor-id="unique-roots-per-language">Unique Roots Per Language</h2>
+<section id="range-of-word-lengths" class="level2">
+<h2 class="anchored" data-anchor-id="range-of-word-lengths">Range of Word Lengths</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bad_words_stemmed <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">stem =</span> <span class="fu">wordStem</span>(bad_word)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">root =</span> <span class="fu">substr</span>(bad_word, <span class="dv">1</span>, <span class="dv">4</span>)) <span class="co"># crude root approximation</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>unique_roots_all <span class="ot">&lt;-</span> bad_words_stemmed <span class="sc">%&gt;%</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(language_name) <span class="sc">%&gt;%</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">unique_roots =</span> <span class="fu">n_distinct</span>(stem), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(unique_roots_all, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(language_name, unique_roots), <span class="at">y =</span> unique_roots)) <span class="sc">+</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"darkviolet"</span>) <span class="sc">+</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Number of Unique Roots per Language (All Languages Included)"</span>,</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Language"</span>,</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Number of Unique Roots"</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Violin plot of word lengths per language</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cleaned, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(language_name, word_length, <span class="at">FUN =</span> median), <span class="at">y =</span> word_length)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"darkviolet"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"violet"</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> median, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">shape =</span> <span class="dv">23</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Swear Word Lengths per Language"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Language"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Word Length (Characters)"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Median shown as yellow diamond"</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1182,14 +1191,41 @@ Warning
 </div>
 </div>
 </section>
+<section id="unique-roots-per-language" class="level2">
+<h2 class="anchored" data-anchor-id="unique-roots-per-language">Unique Roots Per Language</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bad_words_stemmed <span class="ot">&lt;-</span> cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">stem =</span> <span class="fu">wordStem</span>(bad_word)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">root =</span> <span class="fu">substr</span>(bad_word, <span class="dv">1</span>, <span class="dv">4</span>)) <span class="co"># crude root approximation</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>unique_roots_all <span class="ot">&lt;-</span> bad_words_stemmed <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(language_name) <span class="sc">%&gt;%</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">unique_roots =</span> <span class="fu">n_distinct</span>(stem), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(unique_roots_all, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(language_name, unique_roots), <span class="at">y =</span> unique_roots)) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"darkviolet"</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Number of Unique Roots per Language (All Languages Included)"</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Language"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Number of Unique Roots"</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="example_analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>Across the dataset, English and French have the largest number of bad words, while some less widely spoken languages have far fewer entries. Word length varies widely, with some languages having extremely long or short words. Analysis of roots reveals patterns in how words are formed, and recurring stems highlight common linguistic structures. These insights could be valuable for NLP applications, content moderation, or cultural linguistic studies.</p>
+<p>Across the dataset, English and French have the largest number of swears, while some less widely spoken languages have far fewer entries. Swear length varies widely, with some languages having extremely long or short swears. Most languages have swears with only a handful of characters, but a few languages have exceedlingly long swears; English, Italian, Russian, Dutch, and Persian all have swears over 30 characters. My favorite part of the analysis was looking at the common stems for swears, even between languages there are some visual similarities between the stems.</p>
 </section>
 <section id="functions" class="level1">
 <h1>Functions</h1>
-<section id="functions-used" class="level2">
-<h2 class="anchored" data-anchor-id="functions-used">Functions Used</h2>
 <p><strong>dplyr</strong>: <code>group_by()</code>, <code>summarise()</code>, <code>mutate()</code>, <code>filter()</code>, <code>arrange()</code>, <code>count()</code>, <code>distinct()</code>, <code>drop_na()</code>, <code>left_join()</code>, <code>bind_rows()</code>, <code>slice_max()</code>, <code>slice_min()</code></p>
 <p><strong>ggplot2</strong>: <code>geom_col()</code>, <code>geom_violin()</code>, <code>geom_point()</code>, <code>facet_wrap()</code>, <code>coord_flip()</code>, <code>labs()</code>, <code>theme_minimal()</code>, <code>scale_fill_manual()</code>, <code>geom_segment()</code></p>
 <p><strong>knitr</strong>: <code>kable()</code></p>
@@ -1197,7 +1233,6 @@ Warning
 
 
 
-</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
