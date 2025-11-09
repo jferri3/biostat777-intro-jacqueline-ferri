@@ -84,12 +84,12 @@ language_stats <- cleaned %>%
   group_by(language_name) %>%
   summarise(
     total_words = n(),               # total number of words
-    mean_length = mean(word_length), # mean word length
-    sd_length = sd(word_length),     # SD of word lengths
+    mean_length = mean(word_length), # mean swear length
+    sd_length = sd(word_length),     # SD of swear lengths
     .groups = "drop"
   )
 
-# Step 2: One-way ANOVA for mean word length differences 
+# Step 2: One-way ANOVA for mean swear length differences 
 anova_result <- aov(word_length ~ language_name, data = cleaned)
 
 # Tukey HSD for pairwise differences
@@ -112,20 +112,20 @@ ggplot(language_stats, aes(x = reorder(language_name, total_words), y = total_wo
 **English and French have the most number of swears compared to all other languages by almost half.**
 
 ```{r}
-# Step 4: Alternate way of visualizing word length differences 
+# Step 4: Alternate way of visualizing swear length differences 
 ggplot(cleaned, aes(x = reorder(language_name, word_length, FUN = median), y = word_length)) +
   geom_boxplot(aes(fill = language_name), outlier.alpha = 0.3) +
   coord_flip() +
   labs(
-    title = "Word Length Distribution by Language",
+    title = "Swear Length Distribution by Language",
     x = "Language",
-    y = "Word Length (Characters)"
+    y = "Swear Length (Characters)"
   ) +
   theme_minimal() +
   theme(legend.position = "none")
 ```
 
-**Average word length varies across languages, significantly. Geogrpahical location might have an effect on swear length - Western European languages and some Middle Eastern languages have longer swears, while Asian languages seem to have shorter swears. **
+**Average swear length varies across languages, significantly. Geogrpahical location might have an effect on swear length - Western European languages and some Middle Eastern languages have longer swears, while Asian languages seem to have shorter swears. **
 
 ::: {.column-margin}
 ## While swearing and vulgarity are not necessarily the same concept; there are connections
@@ -173,9 +173,9 @@ fill = "Group"
 theme_minimal()
 ```
 
-## Longest Swear Word Per Language
+## Longest Swear Per Language
 
-I was interested in determining the longest word for each language. We look at the longest word for each language to explore the extremes in word length. The swears will also be displayed in a table to see examples of swears across languages.
+I was interested in determining the longest word for each language. We look at the longest word for each language to explore the extremes in swear length. The swears will also be displayed in a table to see examples of swears across languages.
 
 
 ```{r}
@@ -188,7 +188,7 @@ select(language_name, bad_word)
 knitr::kable(top_words_per_lang, caption="Longest Swear Word Per Language")
 ```
 
-## Word Length Statistics
+## Swear Length Statistics
 
 We calculate the shortest, longest, median, and mean lengths of words per language.
 
@@ -214,7 +214,7 @@ ggplot(word_length_summary, aes(x = reorder(language_name, longest))) +
     title = "Shortest and Longest Swears per Language",
     x = "Language",
     y = "Swear Length (Characters)",
-    caption = "Lollipop chart showing range of word lengths per language"
+    caption = "Lollipop chart showing range of swear lengths per language"
   ) +
   theme_minimal()
 ```
@@ -265,7 +265,7 @@ root_summary %>%
 
 ## Additional Analyses
 
-Average Word Length
+Average Swear Length
 
 ```{r}
 avg_length <- cleaned %>%
@@ -281,18 +281,18 @@ theme_minimal()
 
 **This analysis is dispalyed in alphabetical order of swear stems - it was interesting to see how many times different stems appear. Languages vary in regards to number of times a stem is used. **
 
-## Range of Word Lengths
+## Range of Swear Lengths
 
 ```{r}
-# Violin plot of word lengths per language
+# Violin plot of swear lengths per language
 ggplot(cleaned, aes(x = reorder(language_name, word_length, FUN = median), y = word_length)) +
   geom_violin(fill = "darkviolet", alpha = 0.7, color = "violet") +
   stat_summary(fun = median, geom = "point", shape = 23, size = 2, fill = "skyblue") +
   coord_flip() +
   labs(
-    title = "Distribution of Swear Word Lengths per Language",
+    title = "Distribution of Swear Swear Lengths per Language",
     x = "Language",
-    y = "Word Length (Characters)",
+    y = "Swear Length (Characters)",
     caption = "Median shown as yellow diamond"
   ) +
   theme_minimal()
